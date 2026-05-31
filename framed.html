@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Framed — Gerardo Pelayo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808; --near-black: #0f0f0f; --dark: #1a1a1a; --mid: #2e2e2e;
+      --subtle: #444; --muted: #888; --light: #c8c0b4; --cream: #e8e0d4;
+      --white: #f5f2ee; --accent: #c8a96e;
+    }
+    body { background: var(--black); color: var(--light); font-family: 'Raleway', sans-serif; font-weight: 300; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 48px; background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent); }
+    .nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); text-decoration: none; }
+    .nav-back { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .nav-back:hover { color: var(--cream); }
+    .series-header { padding: 160px 48px 80px; border-bottom: 1px solid var(--mid); }
+    .series-eyebrow { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .series-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3rem, 6vw, 5.5rem); color: var(--white); line-height: 1; margin-bottom: 24px; }
+    .series-desc { font-size: 0.9rem; line-height: 1.9; color: var(--muted); max-width: 560px; }
+    .photo-grid { padding: 4px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    .photo-item { overflow: hidden; background: var(--dark); cursor: pointer; }
+    .photo-item.wide { grid-column: span 2; }
+    .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s; filter: brightness(0.8) contrast(1.05); aspect-ratio: 3/2; }
+    .photo-item.wide img { aspect-ratio: 16/7; }
+    .photo-item:hover img { transform: scale(1.03); filter: brightness(0.9) contrast(1.08); }
+    footer { background: var(--near-black); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--mid); margin-top: 4px; }
+    footer p { font-size: 0.62rem; letter-spacing: 0.15em; color: var(--subtle); text-transform: uppercase; }
+    @media (max-width: 768px) { nav { padding: 24px 28px; } .series-header { padding: 120px 28px 56px; } .photo-grid { grid-template-columns: 1fr; } .photo-item.wide { grid-column: span 1; } .photo-item.wide img { aspect-ratio: 3/2; } footer { flex-direction: column; gap: 12px; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-name">Gerardo Pelayo</a>
+    <a href="index.html" class="nav-back">← All Work</a>
+  </nav>
+
+  <div class="series-header">
+    <p class="series-eyebrow">Series 02</p>
+    <h1 class="series-title">Framed</h1>
+    <p class="series-desc">Architectural subject matter, historic structures, and geometric detail. The eye drawn to thresholds, patterns, and the places where light enters. Paris, India, Wisconsin, the American Midwest.</p>
+  </div>
+
+  <div class="photo-grid">
+    <div class="photo-item wide">
+      <img src="images/100_0619.JPG" alt="Musée d'Orsay clock, Paris">
+    </div>
+    <div class="photo-item">
+      <img src="images/XSI_6665.JPG" alt="Mughal lattice window, India">
+    </div>
+    <div class="photo-item">
+      <img src="images/IMG_0543.JPG" alt="Fatehpur Sikri archway, India">
+    </div>
+    <div class="photo-item">
+      <img src="images/XSI_6934.JPG" alt="Woman in archway, India">
+    </div>
+    <div class="photo-item">
+      <img src="images/XSI_5031.JPG" alt="Moss covered stairs">
+    </div>
+    <div class="photo-item wide">
+      <img src="images/XSI_5020.JPG" alt="Frank Lloyd Wright memorial, Wisconsin">
+    </div>
+    <div class="photo-item">
+      <img src="images/XSI_5201.JPG" alt="Peeling red barn">
+    </div>
+    <div class="photo-item">
+      <img src="images/XSI_5044.JPG" alt="Doorway with heart">
+    </div>
+    <div class="photo-item">
+      <img src="images/100_0771.JPG" alt="Eiffel Tower mechanism">
+    </div>
+    <div class="photo-item">
+      <img src="images/100_0532.JPG" alt="Versailles tree alley">
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Gerardo Pelayo</p>
+    <p>Framed — Series 02</p>
+    <p>gerardopelayo.com</p>
+  </footer>
+</body>
+</html>
