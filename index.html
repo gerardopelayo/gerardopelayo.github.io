@@ -247,6 +247,30 @@
       text-align: right;
     }
 
+    .about-portrait {
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-portrait img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+      filter: brightness(0.85) contrast(1.05);
+    }
+
+    .portrait-caption {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
     /* ── SERIES GRID ── */
     .series-section {
       background: var(--black);
@@ -602,7 +626,7 @@
     <div class="remnant-visual">
       <div class="remnant-eclipse-display">
         <!-- Replace with your eclipse image filename -->
-        <img src="images/EOS 70D2024_04_084496.JPG" alt="Total Solar Eclipse, Indiana, April 8 2024">
+        <img src="images/EOS_70D2024_04_084496.JPG" alt="Total Solar Eclipse, Indiana, April 8 2024">
       </div>
     </div>
     <div class="remnant-text fade-in">
@@ -629,6 +653,10 @@
     <div class="about-text fade-in">
       <p class="section-label">About</p>
       <h2 class="section-title">The Practice</h2>
+      <div class="about-portrait">
+        <img src="images/IMG_0816.JPG" alt="Gerardo Pelayo photographing in Jaipur, India">
+        <p class="portrait-caption">Jaipur, India</p>
+      </div>
       <p class="lead">Photography, for me, is not a hobby. It is the only way I remember what I have seen.</p>
       <p>I am a Chicago-based photographer with over twenty years of practice across travel, nature, landscape, architectural detail, and portraiture. My work spans four continents, with a sustained focus on light, composition, and the qualities of place that resist easy description.</p>
       <p>I studied photography under Richard Stromberg, founder of Chicago Photography Classes, whose teaching centered on the psychological relationship between photographer and subject. I have also trained in woodworking and woodturning at the Chicago School of Woodworking — a practice that has deepened my understanding of craft, material, and the integrity of making.</p>
@@ -656,7 +684,7 @@
         <span class="detail-value">MS, Roosevelt University<br>BA, DeVry University</span>
       </div>
       <div class="detail-item">
-        <span class="detail-label">Forthcoming Project</span>
+        <span class="detail-label">Current Project</span>
         <span class="detail-value">Remnant, 2026</span>
       </div>
     </div>
