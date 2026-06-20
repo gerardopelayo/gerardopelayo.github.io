@@ -3,188 +3,719 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Remnant — Gerardo Pelayo</title>
+<title>Gerardo Pelayo — Photographer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --black: #080808; --near-black: #0f0f0f; --dark: #1a1a1a; --mid: #2e2e2e;
-  --subtle: #444; --muted: #888; --light: #c8c0b4; --cream: #e8e0d4;
-  --white: #f5f2ee; --accent: #c8a96e;
+  --black: #080808;
+  --near-black: #0f0f0f;
+  --dark: #1a1a1a;
+  --mid: #2e2e2e;
+  --subtle: #444;
+  --muted: #888;
+  --light: #c8c0b4;
+  --cream: #e8e0d4;
+  --white: #f5f2ee;
+  --accent: #c8a96e;
 }
-body { background: var(--black); color: var(--light); font-family: 'Raleway', sans-serif; font-weight: 300; }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 48px; background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent); }
-.nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); text-decoration: none; }
-.nav-back { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
-.nav-back:hover { color: var(--cream); }
 
-.series-header { padding: 160px 48px 80px; border-bottom: 1px solid var(--mid); }
-.series-eyebrow { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-.series-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3rem, 6vw, 5.5rem); color: var(--white); line-height: 1; margin-bottom: 24px; }
-.series-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--accent); margin-bottom: 32px; letter-spacing: 0.05em; }
-.series-desc { font-size: 0.9rem; line-height: 1.9; color: var(--muted); max-width: 560px; }
-.series-desc p { margin-bottom: 16px; }
-.series-desc strong { color: var(--light); font-weight: 400; }
+html { scroll-behavior: smooth; }
 
-.photo-grid { padding: 4px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
-.photo-item { overflow: hidden; background: var(--dark); cursor: pointer; }
-.photo-item.wide { grid-column: span 2; }
-.photo-item img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s;
-  filter: brightness(0.8) contrast(1.05);
-  aspect-ratio: 3/2;
+body {
+  background: var(--black);
+  color: var(--light);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
 }
-.photo-item.wide img { aspect-ratio: 16/7; }
-.photo-item.tall img { aspect-ratio: 2/3; }
-.photo-item:hover img { transform: scale(1.03); filter: brightness(0.9) contrast(1.08); }
 
-/* Lightbox */
-.lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(8,8,8,0.96); align-items: center; justify-content: center; }
-.lightbox.open { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
-.lightbox-close { position: absolute; top: 32px; right: 40px; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: color 0.3s; }
-.lightbox-close:hover { color: var(--cream); }
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 48px;
+  background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+}
 
-.series-note { padding: 80px 48px; border-top: 1px solid var(--mid); max-width: 680px; }
-.series-note p { font-size: 0.82rem; line-height: 1.9; color: var(--subtle); font-style: italic; }
+.nav-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+}
 
-footer { background: var(--near-black); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--mid); margin-top: 4px; }
-footer p { font-size: 0.62rem; letter-spacing: 0.15em; color: var(--subtle); text-transform: uppercase; }
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
 
-@media (max-width: 768px) {
+.nav-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--cream); }
+
+/* ── HERO ── */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 40% at 62% 42%, rgba(200,169,110,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,255,255,0.015) 0%, transparent 80%);
+}
+
+.hero-eclipse {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.eclipse-ring {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow:
+    0 0 0 2px rgba(200,169,110,0.3),
+    0 0 60px 20px rgba(200,169,110,0.12),
+    0 0 120px 60px rgba(200,169,110,0.06),
+    inset 0 0 0 80px rgba(8,8,8,0.95);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.95;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--cream);
+}
+
+.hero-sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  max-width: 320px;
+  line-height: 1.8;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 72px;
+  right: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--subtle);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--subtle));
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ── SECTION BASE ── */
+section {
+  padding: 120px 48px;
+}
+
+.section-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 48px;
+}
+
+/* ── ABOUT ── */
+.about {
+  background: var(--near-black);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--light);
+  margin-bottom: 20px;
+}
+
+.about-text p.lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.7;
+}
+
+.about-details {
+  padding-top: 8px;
+}
+
+.detail-item {
+  border-top: 1px solid var(--mid);
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.detail-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.detail-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  text-align: right;
+}
+
+.about-portrait {
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-portrait img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: brightness(0.85) contrast(1.05);
+}
+
+.portrait-caption {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* ── SERIES GRID ── */
+.series-section {
+  background: var(--black);
+}
+
+.series-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+}
+
+.series-desc {
+  max-width: 440px;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.series-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3/4;
+  background: var(--dark);
+  text-decoration: none;
+}
+
+.series-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.2) 50%, transparent 100%);
+  z-index: 1;
+  transition: opacity 0.5s;
+}
+
+.series-card:hover::before {
+  opacity: 0.7;
+}
+
+.series-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: brightness(0.75) contrast(1.05);
+}
+
+.series-card:hover .series-card-img {
+  transform: scale(1.04);
+  filter: brightness(0.65) contrast(1.1);
+}
+
+.series-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 28px;
+  z-index: 2;
+}
+
+.series-number {
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.series-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.series-tagline {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--light);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s;
+}
+
+.series-card:hover .series-tagline {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── REMNANT FEATURE ── */
+.remnant-section {
+  background: var(--near-black);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 80vh;
+}
+
+.remnant-visual {
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remnant-eclipse-display {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.remnant-eclipse-display img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.remnant-text {
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.remnant-text .section-label {
+  margin-bottom: 12px;
+}
+
+.remnant-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.remnant-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 40px;
+  letter-spacing: 0.05em;
+}
+
+.remnant-body {
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.remnant-body strong {
+  color: var(--light);
+  font-weight: 400;
+}
+
+.remnant-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  transition: gap 0.3s;
+}
+
+.remnant-cta::after {
+  content: '→';
+  font-size: 1rem;
+}
+
+.remnant-cta:hover { gap: 24px; }
+
+/* ── CONTACT ── */
+.contact-section {
+  background: var(--black);
+  text-align: center;
+  padding: 120px 48px;
+  border-top: 1px solid var(--mid);
+}
+
+.contact-section .section-title {
+  margin-bottom: 24px;
+}
+
+.contact-section p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 0 auto 48px;
+}
+
+.contact-link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--cream);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 4px;
+  transition: color 0.3s;
+}
+
+.contact-link:hover { color: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--near-black);
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--mid);
+}
+
+footer p {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: var(--subtle);
+  text-transform: uppercase;
+}
+
+/* ── FADE IN ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
   nav { padding: 24px 28px; }
-  .series-header { padding: 120px 28px 56px; }
-  .photo-grid { grid-template-columns: 1fr; }
-  .photo-item.wide { grid-column: span 1; }
-  .photo-item.wide img { aspect-ratio: 3/2; }
-  .photo-item.tall img { aspect-ratio: 3/2; }
-  .series-note { padding: 56px 28px; }
-  footer { flex-direction: column; gap: 12px; }
+  .nav-links { gap: 24px; }
+  section { padding: 80px 28px; }
+  .hero { padding: 0 28px 56px; }
+  .about { grid-template-columns: 1fr; gap: 48px; }
+  .series-grid { grid-template-columns: 1fr; }
+  .series-card { aspect-ratio: 4/3; }
+  .remnant-section { grid-template-columns: 1fr; }
+  .remnant-eclipse-display { min-height: 300px; }
+  .remnant-text { padding: 56px 28px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-name">Gerardo Pelayo</a>
-  <a href="index.html" class="nav-back">← All Work</a>
+  <a href="#" class="nav-name">Gerardo Pelayo</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#remnant">Remnant</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<div class="series-header">
-  <p class="series-eyebrow">Forthcoming Project · 2026</p>
-  <h1 class="series-title">Remnant</h1>
-  <p class="series-subtitle">A Photographic Portrait of a Virgin Prairie</p>
-  <div class="series-desc">
-    <p>I live with <strong>aphantasia</strong> — a condition in which the mind produces no visual images. When I close my eyes, there is nothing to see. I cannot conjure a face, a room, or a landscape I love.</p>
-    <p>My camera is not a creative accessory. <strong>It is an extension of memory itself.</strong> Every photograph I take is the only way I will ever see that moment again.</p>
-    <p>Remnant is a photographic project centered on one of the rarest ecosystems in North America — a protected virgin prairie, a fragment of something that once covered an entire region, now almost entirely gone. I photograph it the way my condition requires me to photograph everything I love: <strong>as if I will never see it again.</strong></p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-eclipse">
+    <div class="eclipse-ring"></div>
   </div>
-</div>
-
-<div class="photo-grid">
-
-  <!-- Hero: The deer — arrival in the prairie at dawn -->
-  <div class="photo-item wide" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135641.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135641.jpg" alt="Deer standing in the prairie path at dawn">
+  <div class="hero-content fade-in">
+    <p class="hero-eyebrow">Chicago, Illinois</p>
+    <h1 class="hero-title">Gerardo<br><em>Pelayo</em></h1>
+    <p class="hero-sub">Photographer — Twenty years of practice across nature, landscape, architecture, and people</p>
   </div>
-
-  <!-- The two dramatic pink/magenta sunrise skies -->
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135718.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135718.jpg" alt="Magenta sunrise over prairie silhouette">
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
   </div>
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135703.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135703.jpg" alt="Pink sunrise with tree silhouettes and wildflower foreground">
-  </div>
+</section>
 
-  <!-- Wide golden sunrise prairie -->
-  <div class="photo-item wide" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135740.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135740.jpg" alt="Golden sunrise over the prairie with wildflowers">
+<!-- SERIES -->
+<section class="series-section" id="work">
+  <div class="series-intro fade-in">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Selected Work</h2>
+    </div>
+    <p class="series-desc">Three bodies of work spanning four continents — united by a search for light, structure, and the qualities of place that resist easy description.</p>
   </div>
 
-  <!-- Botanicals: daisies and spiderwort -->
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135680.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135680.jpg" alt="Three white oxeye daisies in the prairie grass">
+  <div class="series-grid fade-in">
+
+    <a href="light-and-land.html" class="series-card">
+      <img class="series-card-img" src="images/EOS_016765.JPG" alt="Light and Land">
+      <div class="series-card-content">
+        <span class="series-number">Series 01</span>
+        <h3 class="series-name">Light<br>&amp; Land</h3>
+        <p class="series-tagline">Natural landscapes — Iceland, Quebec, South Dakota, Illinois</p>
+      </div>
+    </a>
+
+    <a href="framed.html" class="series-card">
+      <img class="series-card-img" src="images/100_0619.JPG" alt="Framed">
+      <div class="series-card-content">
+        <span class="series-number">Series 02</span>
+        <h3 class="series-name">Framed</h3>
+        <p class="series-tagline">Architecture &amp; detail — Paris, India, Wisconsin, the Midwest</p>
+      </div>
+    </a>
+
+    <a href="people-and-place.html" class="series-card">
+      <img class="series-card-img" src="images/XSI_6774.JPG" alt="People and Place">
+      <div class="series-card-content">
+        <span class="series-number">Series 03</span>
+        <h3 class="series-name">People<br>&amp; Place</h3>
+        <p class="series-tagline">Portraits &amp; presence — India, Peru, Mexico, Chicago</p>
+      </div>
+    </a>
+
   </div>
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135963.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135963.jpg" alt="Blue spiderwort wildflowers">
+</section>
+
+<!-- REMNANT FEATURE -->
+<section class="remnant-section" id="remnant">
+  <div class="remnant-visual">
+    <div class="remnant-eclipse-display">
+      <img src="images/remnant/EOS%2070D2026_06_135641.jpg" alt="Deer in the prairie path at dawn — Remnant project">
+    </div>
   </div>
-
-  <!-- Arrival: dusk garden path with red farmhouse -->
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135629.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135629.jpg" alt="Garden path at dusk leading to the red farmhouse">
+  <div class="remnant-text fade-in">
+    <p class="section-label">Forthcoming Project</p>
+    <h2 class="remnant-title">Remnant</h2>
+    <p class="remnant-subtitle">A project in development, 2026</p>
+    <p class="remnant-body">
+      I live with <strong>aphantasia</strong> — a condition in which the mind produces no visual images. When I close my eyes, there is nothing to see. I cannot conjure a face, a room, or a landscape I love.
+    </p>
+    <p class="remnant-body">
+      My camera is not a creative accessory. <strong>It is an extension of memory itself.</strong> Every photograph I take is the only way I will ever see that moment again.
+    </p>
+    <p class="remnant-body">
+      Remnant is a forthcoming photographic project centered on one of the rarest ecosystems in North America — a protected virgin prairie, a fragment of something that once covered an entire region, now almost entirely gone. I intend to photograph it the way my condition requires me to photograph everything I love: as if I will never see it again.
+    </p>
+    <p class="remnant-body">
+      <strong>Some places hold things that very few places hold. I have something that very few people have. That is why it calls to me.</strong>
+    </p>
+    <a href="remnant.html" class="remnant-cta">View Early Work</a>
   </div>
+</section>
 
-  <!-- Woodcraft details: tree rings and stacked firewood -->
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135914.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135914.jpg" alt="Cross-section of a felled tree, growth rings">
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text fade-in">
+    <p class="section-label">About</p>
+    <h2 class="section-title">The Practice</h2>
+    <div class="about-portrait">
+      <img src="images/IMG_0246.JPG" alt="Gerardo Pelayo, photographer, India">
+      <p class="portrait-caption">Agra, India</p>
+    </div>
+    <p class="lead">Photography, for me, is not a hobby. It is the only way I remember what I have seen.</p>
+    <p>I am a Chicago-based photographer with over twenty years of practice across travel, nature, landscape, architectural detail, and portraiture. My work spans four continents, with a sustained focus on light, composition, and the qualities of place that resist easy description.</p>
+    <p>I studied photography under Richard Stromberg, founder of Richard Stromberg's Chicago Photography Classes, whose teaching centered on the psychological relationship between photographer and subject. I have also trained in woodworking and woodturning at the Chicago School of Woodworking — a practice that has deepened my understanding of craft, material, and the integrity of making.</p>
+    <p>I am rooted in Chicago's creative community through two decades of involvement with organizations including Café Teatro Batey Urbano, 826CHI, and Chicago Public Schools.</p>
   </div>
-
-  <!-- Into the woods: green tunnel path -->
-  <div class="photo-item wide" onclick="openLightbox('images/remnant/EOS%2070D2026_06_136000.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_136000.jpg" alt="Wooded green tunnel path into the forest">
+  <div class="about-details fade-in">
+    <div class="detail-item">
+      <span class="detail-label">Based</span>
+      <span class="detail-value">Chicago, Illinois</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Practice</span>
+      <span class="detail-value">20+ years</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Disciplines</span>
+      <span class="detail-value">Landscape · Architecture<br>Portraiture · Travel</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Training</span>
+      <span class="detail-value">Richard Stromberg's<br>Chicago Photography Classes<br>Chicago School of Woodworking</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Education</span>
+      <span class="detail-value">MS, Roosevelt University<br>BA, DeVry University</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Forthcoming Project</span>
+      <span class="detail-value">Remnant, 2026</span>
+    </div>
   </div>
+</section>
 
-  <!-- Suspension bridge -->
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_136051.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_136051.jpg" alt="Suspension bridge disappearing into the forest canopy">
-  </div>
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-label">Contact</p>
+  <h2 class="section-title">Get in Touch</h2>
+  <p>Inquiries regarding the Remnant project, commissions, or author portraiture welcome.</p>
+  <a href="mailto:gerardopelayo.photo@gmail.com" class="contact-link">gerardopelayo.photo@gmail.com</a>
+</section>
 
-  <!-- Arched branch canopy trail -->
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_136056.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_136056.jpg" alt="Arched branch canopy over a woodland trail">
-  </div>
-
-  <!-- Water: wide pond reflection -->
-  <div class="photo-item wide" onclick="openLightbox('images/remnant/EOS%2070D2026_06_136078.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_136078.jpg" alt="Perfect pond reflection of sky and treeline">
-  </div>
-
-  <!-- Second pond view -->
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_136116.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_136116.jpg" alt="Wide pond reflection with both treelines at sunrise">
-  </div>
-
-  <!-- Firewood stacked -->
-  <div class="photo-item" onclick="openLightbox('images/remnant/EOS%2070D2026_06_135934.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_135934.jpg" alt="Stacked firewood cross-sections">
-  </div>
-
-  <!-- Closing: the dovecote/garden tower in afternoon light -->
-  <div class="photo-item wide" onclick="openLightbox('images/remnant/EOS%2070D2026_06_136212.jpg')">
-    <img src="images/remnant/EOS%2070D2026_06_136212.jpg" alt="Dovecote and garden outbuilding in afternoon light">
-  </div>
-
-</div>
-
-<div class="series-note">
-  <p>These photographs were made in the early morning hours of June 13, 2026 — before dawn, through golden hour, into full morning light. Remnant is a project in active development. An application for artist residency at the site has been submitted.</p>
-</div>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lightbox-close">Close ✕</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
-
+<!-- FOOTER -->
 <footer>
   <p>© 2026 Gerardo Pelayo</p>
-  <p>Remnant — Forthcoming</p>
   <p>gerardopelayo.com</p>
+  <p>Chicago, Illinois</p>
 </footer>
 
 <script>
-function openLightbox(src) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').classList.add('open');
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.getElementById('lightbox-img').src = '';
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+// Fade in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Trigger hero immediately
+document.querySelector('.hero .fade-in').classList.add('visible');
 </script>
 
 </body>
